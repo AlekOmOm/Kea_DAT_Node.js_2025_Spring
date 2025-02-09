@@ -9,15 +9,20 @@ const lastName = "Latif";
 // show in the console
 // My first name is Anders and my last name is Latif
 
-console.log(`My first name is ${firstName} and my last name is ${lastName}`)
-
 const intro = (first, last) => {
    console.log(`My first name is ${first} and my last name is ${last}`)
 }
 
 intro(firstName,lastName)
 
+console.log(`My first name is ${firstName} and my last name is ${lastName}`)
 
+
+const introduction = `My first name is ${firstName} ${lastName}`;
+
+console.log(introduction);
+
+// ASI
 
 // --------------------------------------
 // Exercise 2 - Numbers and Strings
