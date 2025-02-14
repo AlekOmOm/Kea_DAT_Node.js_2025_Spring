@@ -94,6 +94,7 @@ const satellites_updated_terniary_sd = satellites.map(satellite => ({
 
 
 // parallilized map solution
+   // parallelizing is 
 
 const satellites_updated_parallel = satellites.map(satellite => {
    if (satellite.name != "MIR") { // if not MIR
@@ -122,3 +123,6 @@ const satellites_updated_parallel = satellites.map(satellite => {
 const thumps_up = satellites.map(satellite => '👍')
 
 console.log (thumps_up)
+
+const listOfReactions = ["thumbs down", "thumbs up", "heart"]
+const reactions = listOfReactions.map()

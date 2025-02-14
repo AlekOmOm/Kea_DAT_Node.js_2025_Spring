@@ -1,0 +1,10 @@
+
+Endpoints            HTTP Verb
+----------------------------------------
+base: /fingerbones   
+/                    GET
+/{id}                GET
+/                    POST
+/{id}                PUT
+/{id}                PATCH
+/{id}                DELETE
