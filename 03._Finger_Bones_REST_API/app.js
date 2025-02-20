@@ -1,4 +1,5 @@
 
+
 express = require('express') // require is importing in Express 
 const app = express() // creating a new instance of Express
 
@@ -22,6 +23,8 @@ const fingerBones = [
         name: "Distal Phalange",
     }
 ]
+
+
 
 app.listen(PORT, () => {
    console.log("Server running on port: 8080")
@@ -166,4 +169,22 @@ app.get('/welcomepage', (req, res) => {
                 // -> all team and users can run the code without changing the path
 
 })
+
+
+
+app.get("/fingerbones", (req, res) => {
+    res.send({ data: fingerBones });
+});
+
+app.get("/fingerbones/:id", (req, res) => {
+    const fingerBoneId = Number(req.params.id);
+    const foundFingerBones = fingerBones.find((fingerBone) => fingerBone.id === fingerBoneId);
+
+    if (!foundFingerBones) {
+        res.status(404).send({ error: `No finger bones found with id ${fingerBoneId}` });
+    } else {
+        res.send({ data: foundFingerBones });
+    }
+});
+
 
