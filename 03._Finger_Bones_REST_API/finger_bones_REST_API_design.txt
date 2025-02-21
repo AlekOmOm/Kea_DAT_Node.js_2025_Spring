@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 Endpoints            HTTP Verb
 ----------------------------------------
 base: /fingerbones   
@@ -9,7 +8,6 @@ base: /fingerbones
 /{id}                PUT
 /{id}                PATCH
 /{id}                DELETE
-=======
 Endpoints              HTTP Verb
 -------------------------------------------
 /fingerbones           GET
@@ -19,4 +17,3 @@ Endpoints              HTTP Verb
 /fingerbones/{id}      PATCH
 /fingerboens/{id}      DELETE
 
->>>>>>> upstream/main
