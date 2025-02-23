@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontpage</title>
+    <link rel="stylesheet" href="./frontpage.css">
+</head>
+<body>
+    <main>
+        <h1>Welcome Users!</h1>
+        <div class="visitor-counter" aria-live="polite">Loading visitor count...</div>
+    </main>
+    <script>
+        const updateVisitorCount = async () => {
+            const counterElement = document.querySelector('.visitor-counter');
+            try {
+                const response = await fetch('/visitorscounts');
+                if (!response.ok) throw new Error('Failed to fetch');
+                const data = await response.json();
+                counterElement.textContent = `Visitors Count: ${data.visitorsCount}`;
+            } catch (error) {
+                counterElement.textContent = 'Unable to load visitor count';
+                console.error(error);
+            }
+        };
+        updateVisitorCount();
+    </script>
+</body>
+</html>
