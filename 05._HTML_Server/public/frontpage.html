@@ -3,28 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <!-- 3. link to external CSS file  -->
+    <!-- <link rel="stylesheet" href="./frontpage.css"> -->
+
+    <!-- 2. CSS in style tag -->
+    <style>
+        #frontpage-header {
+            color: red;
+        }
+
+        .headers {
+            background-color: grey;
+        }
+    </style>
     <title>Frontpage</title>
-    <link rel="stylesheet" href="./frontpage.css">
 </head>
 <body>
-    <main>
-        <h1>Welcome Users!</h1>
-        <div class="visitor-counter" aria-live="polite">Loading visitor count...</div>
-    </main>
+    <h1 id="frontpage-header" class="headers">Frontpage</h1>
+
+    <!-- 1. inline-css -->
+    <h2 class="headers" style="color: green">Welcome users!</h2>
+
+
+    <p>You are the visitor number:</p>
+    <div id="visitorsCount"></div>
+
+    <!-- <script src="./frontpage.js"></script> -->
     <script>
-        const updateVisitorCount = async () => {
-            const counterElement = document.querySelector('.visitor-counter');
-            try {
-                const response = await fetch('/visitorscounts');
-                if (!response.ok) throw new Error('Failed to fetch');
-                const data = await response.json();
-                counterElement.textContent = `Visitors Count: ${data.visitorsCount}`;
-            } catch (error) {
-                counterElement.textContent = 'Unable to load visitor count';
-                console.error(error);
-            }
-        };
-        updateVisitorCount();
+        fetch("/visitorscounts")
+        .then((response) => response.json())
+        .then((result) => {
+            const visitorsCountDiv = document.getElementById("visitorsCount");
+            visitorsCountDiv.textContent = result.data;
+        });
     </script>
 </body>
 </html>
+
