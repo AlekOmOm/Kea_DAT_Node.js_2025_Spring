@@ -8,16 +8,6 @@
     <!-- 3. link to external CSS file  -->
     <link rel="stylesheet" href="./frontpage.css">
 
-    <!-- 2. CSS in style tag -->
-    <style>
-        #frontpage-header {
-            color: red;
-        }
-
-        .headers {
-            background-color: grey;
-        }
-    </style>
     <title>Frontpage</title>
 </head>
 <body>
@@ -29,9 +19,32 @@
 
     <p>You are the visitor number:</p>
     <div id="visitorsCount"></div>
+    
+    <!-- task in the html allow users to be redirected to the party page -->
 
-    <!-- <script src="./frontpage.js"></script> -->
+    <a href="/partypage" id="party-link">Go to party</a>
+
+
+
+    <script src="./frontpage.js"></script>
+
     <script>
+        <!-- after 3 seconds, programmatically to to the party page -->
+
+        setTimeout(() => {
+            window.location.replace("/partypage");
+        }, 3000);
+
+        <!-- another solution -->
+
+        setTimeout(() => {
+            // if multiple a tags, modify anchor tag with name attribute 
+            const partyLink = document.getElementById("party-link"); 
+            partyLink.click();
+
+        }, 3000);
+
+        <!-- fetch visitors count from the server -->
         fetch("/visitorscounts")
         .then((response) => response.json())
         .then((result) => {

@@ -1,3 +1,8 @@
-body {
-    background-color: brown;
-}
+
+        #frontpage-header {
+            color: red;
+        }
+        .headers {
+            background-color: grey;
+        }
+
