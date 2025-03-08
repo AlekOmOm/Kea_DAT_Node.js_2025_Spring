@@ -1,0 +1,37 @@
+{
+  "name": "06._doginder",
+  "version": "0.0.1",
+  "description": "Tinder for Indian Dogs",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ls_all": "ls -a",
+    "prod": "cross-env PORT=8080 node app.js",
+    "dev": "cross-env PORT=3000 nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlekOmOm/DogInder.git"
+  },
+  "keywords": [
+    "tinder",
+    "dog",
+    "dogs",
+    "match-making",
+    "love"
+  ],
+  "author": "AlekOmOm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlekOmOm/DogInder/issues"
+  },
+  "homepage": "https://github.com/AlekOmOm/DogInder#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

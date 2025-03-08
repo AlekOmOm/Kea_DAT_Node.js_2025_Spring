@@ -1,0 +1,30 @@
+
+body {
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+
+
+
+
+
+
+/*
+nav {
+ height: 10vh;
+}
+
+main {
+ height: calc(100vh - 20vh); 
+}
+
+footer {
+ height: 5vh;
+}
+*/

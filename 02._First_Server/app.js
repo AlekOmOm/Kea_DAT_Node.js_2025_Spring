@@ -3,7 +3,6 @@ const app = express();
 
 app.use(express.json());
 
-// const app = require('express')();
 
         // endpoint
 // route / get handler
@@ -48,7 +47,80 @@ app.post("/favoritepoliticians", (req, res) => {
     res.send({ data: req.body });
 });
 
-// assignment create a new route and send some data to it through the body
+
+
+// 28-02 modifications:
+
+app.get("/redirecttofavoritethings", (req, res) => {
+    res.redirect("/favoritethings/rose/dog");
+})
+
+
+// -------------------------------------------
+// ------ 07-03 modifications:
+//
+// proxy server 
+
+/*
+ * Assignment: create a /proxy endpoint that calls the google homepage and returns the page to the client
+ */
+
+// require https 
+
+
+
+app.get("/google-proxy", (req, res) => {
+    
+    fetch('https://www.google.com')
+        .then(response => response.text())
+        .then(data => {
+            res.send(data);
+        });
+    
+    // steps of this function:
+    // 1. fetch the google homepage
+    // 2. get the response in text format (html)
+    // 3. send the response to the client (browser)
+
+});
+
+
+app.get("/google-proxy-https", (req, res) => {
+
+    const https = require('https');
+    const options = {
+        hostname: 'www.google.com',
+        port: 443,
+    };
+
+    const request = https.request(options, response => {
+        let data = '';
+
+        response.on('data', chunk => {
+            data += chunk;
+        });
+
+        response.on('end', () => {
+            res.send(data);
+        });
+    });
+
+    request.on('error', error => {
+        console.error(error);
+    });
+
+    request.end();
+
+    // steps of this function:
+    // 1. setup consts for https and options (hostname, port)
+    // 2. create a request to the google homepage
+    // 3. get response
+    //      - in chunks and append them to the data variable
+    // 4. when response end, then send the data to the client (browser)
+
+});
+
+
 
 
 app.listen(8080);
