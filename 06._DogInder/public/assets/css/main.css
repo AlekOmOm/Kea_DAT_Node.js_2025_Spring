@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+=======
+/* nav {
+    height: 10vh;
+}
+
+main {
+    min-height: calc(100vh - 26vh);
+}
+
+footer {
+    height: 5vh;
+} */
+
+>>>>>>> 5e87b53309de6f61fe46bf2ba52e8d9d08f13542
 
 body {
     min-height: 95vh;
@@ -9,6 +24,7 @@ main {
     flex: 1;
 }
 
+<<<<<<< HEAD
 
 
 
@@ -28,3 +44,8 @@ footer {
  height: 5vh;
 }
 */
+=======
+#dog-matches-image {
+    max-height: 40vh;
+}
+>>>>>>> 5e87b53309de6f61fe46bf2ba52e8d9d08f13542

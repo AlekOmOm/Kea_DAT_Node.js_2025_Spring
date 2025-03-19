@@ -39,6 +39,24 @@ app.get("/favoritethings/:favoriteFlower/:favoriteAnimal", (req, res) => {
     res.send({ data: `Your favorite flower is ${req.params.favoriteFlower} and your favorite animal is ${req.params.favoriteAnimal}` });
 });
 
+app.get("/redirecttofavoritethings", (req, res) => {
+    res.redirect("/favoritethings/tulips/sea lions");
+});
+
+
+app.get("/proxy", (req, res) => {
+    fetch("https://www.google.com")
+    .then((response) => response.text())
+    .then((result) => res.send(result));
+    // fetch("https://google.com")
+    // .then((response) => response.arrayBuffer())
+    // .then((buffer) => {
+    //     const decoder = new TextDecoder('iso-8859-1');
+    //     const text = decoder.decode(buffer);
+    //     res.send(text);
+    // });
+});
+
 
 app.post("/favoritepoliticians", (req, res) => {
 
@@ -49,6 +67,7 @@ app.post("/favoritepoliticians", (req, res) => {
 
 
 
+<<<<<<< HEAD
 // 28-02 modifications:
 
 app.get("/redirecttofavoritethings", (req, res) => {
@@ -121,6 +140,13 @@ app.get("/google-proxy-https", (req, res) => {
 });
 
 
+=======
+
+
+/* assignment
+create a /proxy endpoint that calls the google homepage and returns the page to the client
+*/
+>>>>>>> 5e87b53309de6f61fe46bf2ba52e8d9d08f13542
 
 
 app.listen(8080);

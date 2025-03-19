@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // footer.js (as a module)
 // Import company name from main.js module
 
@@ -21,3 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
   copyRightTag.textContent = `© ${currentYear} ${companyName}`;
   footerContainer.appendChild(copyRightTag);
 });
+=======
+const copyrightYearP = document.getElementById("footer-copyright-year");
+
+const currentYear = new Date().getFullYear();
+copyrightYearP.textContent = "©" + currentYear;
+>>>>>>> 5e87b53309de6f61fe46bf2ba52e8d9d08f13542
