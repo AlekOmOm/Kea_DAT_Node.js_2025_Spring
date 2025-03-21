@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* nav {
     height: 10vh;
 }
@@ -12,40 +10,16 @@ footer {
     height: 5vh;
 } */
 
->>>>>>> 5e87b53309de6f61fe46bf2ba52e8d9d08f13542
-
 body {
-    min-height: 95vh;
-    display: flex;
-    flex-direction: column;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
-    flex: 1;
+  flex: 1;
 }
 
-<<<<<<< HEAD
-
-
-
-
-
-
-/*
-nav {
- height: 10vh;
-}
-
-main {
- height: calc(100vh - 20vh); 
-}
-
-footer {
- height: 5vh;
-}
-*/
-=======
 #dog-matches-image {
-    max-height: 40vh;
+  max-height: 40vh;
 }
->>>>>>> 5e87b53309de6f61fe46bf2ba52e8d9d08f13542

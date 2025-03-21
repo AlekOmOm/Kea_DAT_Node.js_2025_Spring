@@ -1,20 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "06._doginder",
-  "version": "0.0.1",
-  "description": "Tinder for Indian Dogs",
-  "type": "module",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "ls_all": "ls -a",
-    "prod": "cross-env PORT=8080 node app.js",
-    "dev": "cross-env PORT=3000 nodemon app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AlekOmOm/DogInder.git"
-=======
   "name": "doginder",
   "version": "0.0.1",
   "description": "Tinder for Indian dogs",
@@ -27,25 +11,11 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anderslatif/Kea_DAT_Node.js_2025_Spring.git"
->>>>>>> 5e87b53309de6f61fe46bf2ba52e8d9d08f13542
   },
   "keywords": [
     "tinder",
     "dog",
     "dogs",
-<<<<<<< HEAD
-    "match-making",
-    "love"
-  ],
-  "author": "AlekOmOm",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AlekOmOm/DogInder/issues"
-  },
-  "homepage": "https://github.com/AlekOmOm/DogInder#readme",
-  "dependencies": {
-    "dotenv": "^16.4.7",
-=======
     "indian",
     "match-making",
     "love"
@@ -58,8 +28,8 @@
   "homepage": "https://github.com/anderslatif/Kea_DAT_Node.js_2025_Spring#readme",
   "dependencies": {
     "@faker-js/faker": "^9.6.0",
->>>>>>> 5e87b53309de6f61fe46bf2ba52e8d9d08f13542
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "faker": "^6.6.6"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"

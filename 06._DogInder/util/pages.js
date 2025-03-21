@@ -11,3 +11,10 @@ export const matchesPage = constructPage(matches,
     }
 );
 
+const match = readPage('./public/pages/match/match.html');
+export const matchPage = constructPage(match,
+    {
+        title: 'DogInder | Match'
+    }
+);
+

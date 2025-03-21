@@ -9,5 +9,21 @@ router.get("/api/matches", async (req, res) => {
     res.send({ data: matches });
 });
 
+router.post("/api/matchContact", async (req, res) => {
+
+    const { name, email, message } = req.body;
+
+    console.log({ data: {
+        name,    
+        email,
+        message
+    }});
+
+    res.redirect('/matches?status=success&message=Message sent successfully');
+});
+
 
 export default router;
+
+
+
