@@ -18,3 +18,9 @@ export const matchPage = constructPage(match,
     }
 );
 
+const contact = readPage('./public/pages/contact/contact.html');
+export const contactPage = constructPage(contact, 
+    {
+        title: 'DogInder | Contact'
+    }
+);
