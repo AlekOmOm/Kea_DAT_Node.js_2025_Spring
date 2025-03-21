@@ -1,3 +1,3 @@
-import partyFactory from './partyFactory.js';
+import partyFactory from "./partyFactory.js";
 
 console.log(partyFactory);
