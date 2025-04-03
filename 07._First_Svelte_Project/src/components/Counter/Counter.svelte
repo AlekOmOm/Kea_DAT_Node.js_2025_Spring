@@ -1,4 +1,3 @@
-
 <script>
    let counter = 0;
 
@@ -32,6 +31,4 @@
       color: blue;
    }
 </style>
-
-
 

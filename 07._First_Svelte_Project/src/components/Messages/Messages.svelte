@@ -21,7 +21,6 @@
 
 <h1>Messages</h1>
 
-
 {#if messages.length > 0}
    <div class="messages">
       {#each messages as message}
@@ -33,17 +32,13 @@
 {/if}
 
 
-
 <p>{ messageInput }</p>
 
 <input bind:value={messageInput} placeholder="Type a message..." />
 
 <button onclick={ addMessage }>Submit message</button>
 
-<FirstMessage firstMessage={ messages[0] }>
-
-</FirstMessage>
-
+<FirstMessage firstMessage={messages[0]}></FirstMessage>
 
 
 <style>
