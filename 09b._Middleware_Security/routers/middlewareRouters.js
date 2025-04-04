@@ -2,13 +2,7 @@ import { Router } from "express";
 
 const apiRouter = Router();
 
-// simple router
-
-apiRouter.use((req, res, next) => {
-  console.log(`${req.method} request for '${req.url}'`);
-  next();
-});
-
+// --- apiRouter routes
 apiRouter.get(
   "/room",
   (req, res, next) => {
@@ -53,7 +47,7 @@ function ipLogger(req, res, next) {
  *
  */
 
-apiRouter.get("/room", greeter, ipLogger, (req, res) => {
+apiRouter.get("/room2", greeter, ipLogger, (req, res) => {
   //res.send({  message: 'welcome to the room!' });
   next();
 });
