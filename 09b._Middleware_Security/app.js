@@ -1,6 +1,7 @@
 import express from "express";
 import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
+import session from "express-session";
 
 const app = express();
 app.use(helmet());
@@ -23,10 +24,22 @@ const authLimiter = rateLimit({
 });
 app.use("/auth", authLimiter);
 
+app.use(session({
+    // todo this should never be pushed
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true, // first time session is created
+    // false for localhost dev, true for production
+        // true for HTTPS, 
+        // false for HTTP
+  cookie: { secure: false } // true for HTTPS, false for HTTP
+}));
 
+
+// ------------------------------------------
 // --- middlewares ---
 
-    // general greeting
+// --- greeting middleware ---
 function greetLoggedInUser(req, res, next) {
   // assuming DB already checked and user is logged in
   console.log("welcome User");
@@ -36,16 +49,24 @@ function greetLoggedInUser(req, res, next) {
 }
 app.use(greetLoggedInUser);
 
+// --- apiRouter middleware ---
 import apiRouter from "./routers/middlewareRouters.js";
 app.use(apiRouter);
 
+// --- authRouter middleware ---
 import authRouter from "./routers/authRouter.js";
 app.use(authRouter);
 
+
+import sessionRouter from "./routers/sessionRouter.js";
+app.use(sessionRouter);
+
+// ------------------------------------------
+// error
 app.get("/{*splat}", (req, res, next) => {
   res.status(404).send(`<h1>404 ${req.params.splat} not found</h1>`);
 });
-
+// ------------------------------------------
 // --- server ---
 const PORT = Number(process.env.PORT) || 8080;
 
