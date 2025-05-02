@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
+    "nodemonDev": "nodemon app.js",
     "dev-db": "nodemon ./database/connect.js",
     "setupDB": "node ./database/setup.js",
     "resetDB": "node ./database/setup.js --delete",
+    "dev": "create-env-if-not-exists && npm run resetDB && npm run nodemonDev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
