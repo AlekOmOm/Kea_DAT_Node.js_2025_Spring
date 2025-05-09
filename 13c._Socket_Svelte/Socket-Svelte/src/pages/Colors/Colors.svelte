@@ -26,6 +26,7 @@
    import io from 'socket.io-client'
 
    import { colorsList } from '../../stores/colorsListStore';
+   import { nickname } from '../../stores/nicknameStore';
    import ColorsList from '../../components/ColorsList.svelte';
 
    let socket;
@@ -34,17 +35,13 @@
    onMount(() => {
       socket = io("http://localhost:8080");
 
-      socket.on("server-sends-color", (data) => {
-
+      socket.on("server-sends-data", (data) => {
          document.body.style.backgroundColor = data.color;
 
-         // todo needs to be changed, since hardcoded
-         const nickname = "Cartman"
-
          colorsList.update((colorsListArray) => {
-            colorsListArray.push({ color: data.color, nickname })
+            colorsListArray.push({ color: data.color, nickname: $nickname });
             return colorsListArray;
-         })
+         });
       })
    })
 
@@ -62,5 +59,7 @@
 
 </script>
 
+<h2>Welcome, {$nickname}!</h2>
 <input type="color" bind:value={color}>
 <button on:click={submitColor}>Submit Color</button>
+<ColorsList />

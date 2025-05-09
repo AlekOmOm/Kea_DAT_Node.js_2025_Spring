@@ -22,12 +22,12 @@
   - [ ] Add error handling for socket connection failures
   - [ ] Monitor socket event emission failures
 
-- [ ] **Store-related Errors**
-  - [ ] Fix nickname store usage in Registration.svelte (currently using nickname.set() but store is accessed as $nickname)
+- [x] **Store-related Errors**
+  - [x] Fix nickname store usage in Registration.svelte (currently using nickname.set() but store is accessed as $nickname)
   - [ ] Add error handling for store updates
 
-- [ ] **Data Flow Errors**
-  - [ ] Fix hardcoded nickname in Colors.svelte
+- [x] **Data Flow Errors**
+  - [x] Fix hardcoded nickname in Colors.svelte
   - [ ] Add proper error handling for fetch requests in Registration component
   - [ ] Implement proper validation before form submission
 

@@ -1,25 +1,26 @@
 <script>
-
-   let nickname;
+   import { nickname } from "../../stores/nicknameStore";
+   
+   let nicknameValue = "";
 
    async function submitNickname() {
-      if (!nickname) {
+      if (!nicknameValue) {
          return;
       }
 
       await fetch("http://localhost:8080/api/nicknames", {
          method: "POST",
-         body: JSON.stringify({ nickname }),
+         body: JSON.stringify({ nickname: nicknameValue }),
          headers: {
             "Content-Type": "application/json"
          }
+      });
 
-      })
-
-      nickname.set(nickname);
+      // Update the store with the new value
+      nickname.set(nicknameValue);
    }
 
 </script>
 
-<input bind:value={nickname}>
-<button on:click={submitNickname}>submit</button> 
+<input bind:value={nicknameValue}>
+<button onclick={submitNickname}>submit</button> 
