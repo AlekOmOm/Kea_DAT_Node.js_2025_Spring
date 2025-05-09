@@ -16,6 +16,8 @@
          }
       });
 
+      localStorage.setItem("nickname", nicknameValue);
+
       // Update the store with the new value
       nickname.set(nicknameValue);
    }

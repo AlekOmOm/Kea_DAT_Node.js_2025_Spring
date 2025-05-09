@@ -30,7 +30,7 @@
    import ColorsList from '../../components/ColorsList.svelte';
 
    let socket;
-   let color = "#ff0000"
+   let color = "#0e3249"
 
    onMount(() => {
       socket = io("http://localhost:8080");
