@@ -1,0 +1,12 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+for server:
+- socket communication use: [sockets.md](mdc:docs/server/api/sockets.md) from docs/server/api/sockets.md
+- socketHandler structure use: [socketHandlers.md](mdc:docs/server/socketHandlers.md)  from docs/server/socketHandlers.md
+
+---
+for rules on maintaining up-to-date socket documentation: [socket_api_documentation.mdc](mdc:.cursor/rules/socket_api_documentation.mdc)

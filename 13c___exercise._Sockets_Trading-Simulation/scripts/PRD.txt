@@ -1,0 +1,118 @@
+<context>
+# Overview
+[This Product Requirements Document (PRD) outlines a "Real-time Trading Simulation" application, designed specifically as a **learning project for the developer**. 
+The primary objective is for the developer to actively apply and solidify their understanding of WebSocket communication (using Socket.IO), Svelte frontend development, and Express backend interactions. 
+This project leverages distilled learnings from the README files of the pre-existing `Socket-Svelte` (client) and `server` (backend) components of the parent project.
+It's intended for a developer seeking to deepen their skills in real-time web technologies through hands-on practice. 
+The development process anticipated for this PRD involves the developer taking the lead in implementation, with AI assistance acting as a Socratic tutor to guide, prompt, and help navigate challenges, rather than providing direct solutions. 
+Its value lies in creating a structured yet flexible framework for guided, practical learning, culminating in a functional real-time application built by the developer.]
+
+# Core Features
+[- **Real-time Asset Price Display**:
+  - What it does: Shows the current price of a fictional asset (e.g., "SimCoin"), which updates live for all connected users based on trading activity.
+  - Why it's important: Central piece of the simulation, demonstrating real-time data synchronization.
+  - How it works at a high level: The server maintains the asset's current price. When a trade (buy/sell) occurs and affects the price, the server broadcasts the new price to all clients.
+- **Buy Button/Action**:
+  - What it does: Allows a user to simulate buying a quantity of the asset.
+  - Why it's important: Provides a mechanism for users to interact with the market and drive price up.
+  - How it works at a high level: Clicking "Buy" (potentially with a specified quantity) sends a "buyOrder" event to the server. The server processes this, updates the asset's price (increases it), and broadcasts the change.
+- **Sell Button/Action**:
+  - What it does: Allows a user to simulate selling a quantity of the asset.
+  - Why it's important: Provides a mechanism for users to interact with the market and drive price down.
+  - How it works at a high level: Clicking "Sell" (potentially with a specified quantity) sends a "sellOrder" event to the server. The server processes this, updates the asset's price (decreases it), and broadcasts the change.
+- **Trade Execution Feedback (Optional MVP / Future Enhancement)**:
+  - What it does: Informs the user that their buy/sell action was processed (e.g., "Bought 10 SimCoin at $X.YZ").
+  - Why it's important: Provides user confirmation and a more complete interaction loop.
+  - How it works at a high level: After processing a buy/sell order, the server could emit an event back to the originating client (or all clients) with details of the trade.]
+</context>
+<PRD>
+# Technical Architecture
+[- **System Components**:
+  - Svelte Frontend: UI for displaying the asset price, buy/sell buttons (and quantity input if implemented). Uses `socket.io-client`.
+  - Express Backend: Node.js server using Express and Socket.IO. Manages asset state (price, potentially virtual supply) and trading logic.
+  - Socket.IO: For real-time bidirectional communication.
+  - `priceEngine.js` (or similar server-side module): Encapsulates the logic for storing asset information (initial price, supply) and calculating price changes based on buy/sell orders and their volume/quantity.
+- **Data Models**:
+  - Server-side (within `priceEngine.js` or main app logic):
+    - `currentPrice`: Number (e.g., 100.00)
+    - `circulatingSupply`: Number (e.g., 1,000,000 - can be fixed for MVP)
+    - `buyImpactFactor`: Number (small multiplier to determine price change on buy)
+    - `sellImpactFactor`: Number (small multiplier to determine price change on sell)
+  - Client-side: Variable to hold `currentPrice` for display.
+- **APIs and Integrations (Socket.IO Events)**:
+  - Client emits:
+    - `buyOrder`: { quantity: Number }
+    - `sellOrder`: { quantity: Number }
+  - Server emits:
+    - `priceUpdate`: { newPrice: Number, assetName: String } (to all clients)
+    - `tradeExecuted`: { type: 'buy'/'sell', quantity: Number, price: Number, message: String } (optional, to originating client or all)
+- **Infrastructure Requirements**:
+  - Node.js runtime environment.
+  - Standard web browser for the Svelte client.]
+
+# Development Roadmap
+[- **MVP Requirements**:
+  (To be implemented by the developer, with AI guidance as needed)
+  1. Server initializes a fictional asset (e.g., "SimCoin") with a starting price (e.g., $100) and a fixed virtual circulating supply.
+  2. Client connects to the server and displays the initial asset price.
+  3. Client has a "Buy 1 Unit" button and a "Sell 1 Unit" button (fixed quantity for simplest MVP).
+  4. Clicking "Buy 1 Unit":
+     - Client sends a `buyOrder` event to the server (e.g., `{ quantity: 1 }`).
+     - Server's `priceEngine` calculates a new, slightly higher price (e.g., `newPrice = currentPrice + (quantity * buyImpactFactor)`).
+     - Server broadcasts the `priceUpdate` event with the `newPrice` to all connected clients.
+  5. Clicking "Sell 1 Unit":
+     - Client sends a `sellOrder` event to the server (e.g., `{ quantity: 1 }`).
+     - Server's `priceEngine` calculates a new, slightly lower price (e.g., `newPrice = currentPrice - (quantity * sellImpactFactor)`).
+     - Server broadcasts the `priceUpdate` event with the `newPrice` to all connected clients.
+  6. All clients receive the `priceUpdate` event and update their displayed price for SimCoin.
+- **Future Enhancements**:
+  (Developer may choose to implement these post-MVP, applying learned concepts)
+  - Allow users to input the quantity for buy/sell orders.
+  - Display a simple log/history of recent trades.
+  - Implement a more sophisticated price adjustment model (e.g., based on a percentage change, or a simplified order book depth).
+  - Basic user "balances" (virtual cash and asset holdings) – more complex.
+  - Visual chart of price history.
+  - Multiple assets.
+- Do not think about timelines whatsoever -- all that matters is scope and detailing exactly what needs to be build in each phase so it can later be cut up into tasks]
+
+# Logical Dependency Chain
+[- **Which features need to be built first (foundation)**:
+  1. Basic Express server with Socket.IO.
+  2. Server-side `priceEngine.js` to initialize and hold asset price.
+  3. Basic Svelte frontend establishing Socket.IO connection.
+  4. Client UI to display the initial price received from the server on connection.
+- **Getting as quickly as possible to something usable/visible front end that works (MVP core loop)**:
+  1. Implement "Buy 1 Unit" button on the client to emit `buyOrder`.
+  2. Server logic in `priceEngine` to receive `buyOrder`, update price, and store it.
+  3. Server broadcasts `priceUpdate`.
+  4. Client receives `priceUpdate` and updates display.
+  5. Repeat for "Sell 1 Unit" button and `sellOrder`.
+- **Properly pacing and scoping each feature so it is atomic but can also be built upon and improved as development approaches**:
+  - Focus entirely on the fixed-quantity buy/sell and price update loop for MVP.
+  - User input for quantity, trade log, etc., are distinct subsequent features.]
+
+# Risks and Mitigations
+[- **Technical Challenges**:
+  - **Price Logic Complexity**: Defining a price adjustment formula that feels responsive but not overly volatile or complex for a learning project.
+    - Mitigation: Start with the extremely simple additive model (`price +/- quantity * factor`). Refine `buyImpactFactor` and `sellImpactFactor` through testing and guided discussion.
+  - **Real-time Synchronization**: Ensuring all clients see consistent and timely price updates.
+    - Mitigation: Rely on Socket.IO's broadcasting (`io.emit`). Test with multiple browser windows. Address any discrepancies through guided debugging.
+  - **State Management (Server)**: Correctly updating and storing the single source of truth for the price on the server.
+    - Mitigation: Keep server-side state minimal for MVP. Discuss and plan any expansions to state management with AI tutor.
+- **Figuring out the MVP that we can build upon**:
+  - The defined MVP (fixed quantity buy/sell, price update broadcast) is a solid minimal foundation for learning.
+    - Mitigation: Resist adding features like user balances or variable quantities until the MVP core loop is stable and well understood through developer implementation and Socratic review.
+- **Resource Constraints**:
+  - Primarily developer time for learning and implementation.
+    - Mitigation: The project is designed to be simple. Break down MVP steps into smaller tasks. Utilize AI tutor for clarification and to unblock learning hurdles rather than for direct code generation. Reinforce learning through application.]
+
+# Appendix
+[- **Key Learning Resources**:
+  - The README files from the developer's existing `Socket-Svelte` (client) and `server` (backend) projects are crucial prerequisites and reference materials for understanding foundational Socket.IO setup and Express/Svelte integration.
+  - Official Socket.IO and Svelte documentation.
+- **Technical Specifications**:
+  - Asset Name: "SimCoin" (or similar)
+  - Initial Price: e.g., $100.00
+  - Impact Factors: Small numbers, e.g., 0.1 or 0.05 to start, to be tuned by the developer during implementation.
+  - Socket.IO Events: `buyOrder`, `sellOrder`, `priceUpdate`.]
+</PRD> 

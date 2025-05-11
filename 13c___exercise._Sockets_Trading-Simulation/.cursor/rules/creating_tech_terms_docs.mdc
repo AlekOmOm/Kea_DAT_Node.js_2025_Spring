@@ -1,0 +1,85 @@
+---
+description: creating term docs (.md doc in docs/terms/)
+globs: 
+alwaysApply: false
+---
+## Rules for Creating Technology Terms Documents
+
+### I. Data Acquisition
+
+1.  **Primary Source:**
+    *   Utilize Context7 (or similar documentation retrieval tools) to fetch information from the official documentation of the technology in question. This ensures accuracy and relevance.
+
+### II. Document Style
+
+1.  **Tone & Language:**
+    *   **Terse:** Be concise and to the point. Avoid unnecessary words or verbosity.
+    *   **Academic:** Maintain a formal, precise, and objective tone. Aim for clarity suitable for a knowledgeable audience (e.g., "high IQ +2 SD" implies a sophisticated yet clear explanation).
+    *   **Minimalistic:** Focus on essential information. Avoid clutter or overly elaborate descriptions.
+2.  **Formatting & Composition:**
+    *   **Indentation:** Use consistent indentation (e.g., two spaces per level) to visually structure information, especially for sub-points under definitions, purposes, explanations, and within code examples if necessary.
+    *   **Logical Grouping:** Present information in a clear, logical flow. The Definition/Purpose/Explanation/Example structure itself promotes this.
+    *   **Highlighting/Emphasis:**
+        *   Use **bold** for the section labels: "**Definition:**", "**Purpose:**", "**Explanation:**", "**Example:**".
+        *   Use **bold** sparingly within the text to emphasize truly key concepts, terms, or sub-components crucial to understanding.
+    *   **Lists:** Use hyphens (`- `) for bullet points.
+
+### III. Document Structure
+
+1.  **Overall File Structure:**
+    *   **Main Title:** Start with a level 1 Markdown header for the technology (e.g., `# Svelte Terms`).
+    *   **Table of Contents (TOC):**
+        *   Immediately follow the main title with a `## toc` section.
+        *   List all main sections and individual terms as clickable Markdown links (e.g., `- [Term Name](mdc:#term-name)`).
+        *   Organize the TOC to mirror the document's heading structure.
+    *   **Conceptual Groupings (Optional):**
+        *   If terms can be logically grouped (e.g., "Core Concepts", "Template Syntax"), use level 2 Markdown headers (`## Group Name`) for these sections.
+    *   **Individual Terms:**
+        *   Each term should be a level 3 Markdown header (`### Term Name`).
+
+2.  **Structure per Term (`### Term Name`):**
+
+    *   **Definition:**
+        *   `- **Definition:**`
+        *   Provide a clear, succinct definition of the term.
+        *   May use further indented bullet points for key characteristics or facets of the definition.
+            *   Example:
+                ```markdown
+                - **Definition:**
+                    - A primary concept.
+                        - With a sub-characteristic.
+                ```
+
+    *   **Purpose:**
+        *   `- **Purpose:**`
+        *   Explain the primary goal, utility, or "why" of the term/concept.
+        *   May use further indented bullet points if the purpose has multiple distinct aspects.
+
+    *   **Explanation:**
+        *   `- **Explanation:**`
+        *   Elaborate on the definition and purpose, providing context, nuances, and how it fits into the broader technology.
+        *   Can include sub-points for different aspects or types related to the term.
+        *   Cross-reference other related terms if helpful, but maintain focus on the current term.
+
+    *   **Example:**
+        *   `- **Example:**`
+        *   Provide a concise code snippet or logical representation.
+        *   **Language:** Use the most appropriate language for the code block (e.g., ` ```javascript`, ` ```svelte`, ` ```html`). If showing a Svelte component, use ` ```svelte`. If showing a general JavaScript concept used in Svelte, use ` ```javascript`.
+        *   **Conciseness:** Aim for 1-3 lines of core illustrative code. Maximum 10 lines, including minimal necessary surrounding context (e.g., essential imports or brief component structure).
+        *   **Relevance & Utility:** The example must directly and clearly illustrate the definition, purpose, or a key aspect from the explanation. It should show *why* the term is useful or *how* it works in practice.
+        *   **Clarity:** Ensure the code is easy to understand in relation to the term. Comments within the code block can be used sparingly for crucial clarifications if the code itself isn't self-evident.
+
+3.  **Footer (Optional but Recommended):**
+    *   Include a consistent footer at the end of the document:
+        *   Link to a general terms index file (e.g., `[terms index](mdc:index.md)`).
+        *   A "back to top" link (e.g., `[back to top](mdc:#toc)`).
+        *   Link to the official documentation for the technology (e.g., `[svelte official docs](mdc:https:/svelte.dev/docs)`).
+        *   Optionally, links to other related terms documents within the project.
+
+### IV. Key Process Insights (Self-Correction & Refinement)
+
+*   **The "Purpose" Section Evolution:** The explicit addition of a "Purpose" section significantly enhances understanding by clarifying the *raison d'être* of a term, complementing its definition.
+*   **Example Specificity:** Iteratively defining strict constraints for the "Example" section (max lines, relevance to utility, correct code language, illustrative nature) was crucial for making examples value-added rather than perfunctory.
+*   **Refinement of Explanations:** The process highlighted the importance of balancing an "academic/terse" style with comprehensive explanations. This often involves breaking down complex topics into well-indented, digestible sub-points for clarity.
+*   **Visual Structure through Formatting:** Consistent use of highlighting (bolding for labels) and multi-level indentation for structuring information under each term greatly improves scannability and comprehension.
+*   **Semantic Code Block Languages:** Ensuring the language tag for code blocks (` ```javascript` vs. ` ```svelte`) accurately reflects the content being demonstrated, not just the overarching technology of the document, is key for precision.

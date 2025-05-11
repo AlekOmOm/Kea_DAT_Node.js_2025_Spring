@@ -1,0 +1,47 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dev-debug.log
+
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS specific
+.DS_Store
+
+# Task files
+tasks.json
+tasks/
+.env.example
+.taskmasterconfig
+.cursor/mcp.json
+.cursor/rules/cursor_rules.mdc
+.cursor/rules/dev_workflow.mdc
+.cursor/rules/self_improve.mdc
+.cursor/rules/taskmaster.mdc
+.roo/rules/dev_workflow.md
+.roo/rules/roo_rules.md
+.roo/rules/self_improve.md
+.roo/rules/taskmaster.md
+.roo/rules-architect/architect-rules
+.roo/rules-ask/ask-rules
+.roo/rules-boomerang/boomerang-rules
+.roo/rules-code/code-rules
+.roo/rules-debug/debug-rules
+.roo/rules-test/test-rules
+scripts/example_prd.txt

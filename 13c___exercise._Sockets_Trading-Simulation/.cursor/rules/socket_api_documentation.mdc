@@ -1,0 +1,20 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+- **Purpose**: Maintain consistency between the implemented Socket.IO event handlers in `server/src/socketHandlers/` and their definitions in [`sockets.md`](mdc:docs/server/api/sockets.md).
+
+- **Trigger**: This rule is highly relevant when changes are detected in, or discussion pertains to, files within the `server/src/socketHandlers/` directory.
+
+- **Action for AI Assistant (Cursor)**:
+    - When code in `server/src/socketHandlers/` is modified or discussed (e.g., event names, payload structures, acknowledgement formats change):
+        1.  **Identify Changes**: Note the specific modifications or points of discussion related to the event handlers.
+        2.  **Compare with Documentation**: Review the contents of [`docs/server/api/sockets.md`](mdc:docs/server/api/sockets.md) to ascertain if it accurately reflects these changes or the current understanding.
+        3.  **Recommend/Perform Updates**:
+            - If discrepancies are found, or if new events/structures are implemented/discussed that are not yet documented, inform the user.
+            - Propose specific updates to [`docs/server/api/sockets.md`](mdc:docs/server/api/sockets.md).
+            - If requested, assist in applying these updates to the documentation file.
+
+- **Goal**: Reinforce [`docs/server/api/sockets.md`](mdc:docs/server/api/sockets.md) as the reliable single source of truth for the project's Socket.IO communication interface, prompting updates as the implementation evolves.
+
