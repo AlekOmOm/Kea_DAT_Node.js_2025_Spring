@@ -1,40 +1,43 @@
 <script>
+   import { Router, Route, Link, navigate } from "svelte-routing";
+
    import Header from "./components/Header.svelte";
    import Footer from "./components/Footer.svelte"
    import Trading from "./components/Trading.svelte";
+   import Home from "./components/Home.svelte";
 
-let isTrading = $state(false);
-
-function toggleTrading() {
-   isTrading = !isTrading;
-   console.log("isTrading state changed to:", isTrading);
-}
-
+   let url = $state("/");
 </script>
 
-<Header isTrading={isTrading} onToggleTrading={toggleTrading} />
 
-<div class="content">
-   <div class="container">
-      {#if isTrading}
-         <Trading />
-      {/if}
-      {#if !isTrading}
-         <h1>Welcome to the Trading Simulation !</h1>
-         <button onclick={toggleTrading}>Start Trading</button>
-      {/if}
+<Router url={url}>
+   <Route path='/trading' let:params>
+      <Header isTrading={true} />
+      <div class="content">
+         <div class="container">
+            <Trading />
+         </div>
+      </div>
+   </Route>
 
-   </div>
-</div>
+   <Route path='/' let:params>
+      <Header isTrading={false} />
+      <div class="content">
+         <div class="container">
+            <Home />
+         </div>
+      </div>
+   </Route>
 
-<div class="footer">
    <Footer />
-</div>
+</Router>
 
 
 <style>
 
    .container {
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
