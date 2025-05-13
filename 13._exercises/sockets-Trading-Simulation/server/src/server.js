@@ -28,29 +28,45 @@ app.get('/', (req, res) => {
    res.send('Trading Simulation Server running')
 })
 
-// --- sockets ---
-import * as socketHandler from './socketHandlers/index.js'
+// --- socket server ---
+/**
+ * * namespaces: '/', '/trading', '/chat'
+ *
+ */
+
 io.on('connection', (socket) => {
-   console.log('new client connected:', socket.id)
-
-   // --- socket connection  ---
-   socketHandler.connection.handleConnection(io, socket)
-   socketHandler.connection.handleDisconnection(io, socket)
-
-   // namespace routes
-   io.of('/trade').on('connection', (socket) => {
-      // --- socket handlers ---
-      socketHandler.trade.handleConnection(io, socket)
-      socketHandler.trade.handleDisconnection(io, socket)
-   })
-
-   io.of('/user').on('connection', (socket) => {
-      // --- socket handlers ---
-      socketHandler.user.handleConnection(io, socket)
-      socketHandler.user.handleDisconnection(io, socket)
-   })
-
+   console.log('global connection:', socket.id)
+   socket.on('ping', () => socket.emit('pong'))
 })
+
+const tradeNS = io.of('/trade')
+const userNS = io.of('/trade')
+
+// middleware
+tradeNS.use((socket, next) => {
+   console.log('auth middleware checked', socket.id)
+   next()
+})
+
+import * as handler from './socketHandlers/trade.js';
+tradeNS.on('connection', (socket) => {
+   socket.on('buy', (data) => handler.buy(socket, data))
+   socket.on('sell', (data) => handler.sell(socket, data))
+
+   socket.on('trade history', (data) => handler.tradeHistory(socket, data))
+
+   socket.on('disconnect', () => {
+      console.log('user disconnected', socket.id)
+   })
+})
+
+userNS.on('log in', (socket) => {
+   console.log('logged in', socket.id)
+})
+
+
+
+
 
 
 // --- server ---

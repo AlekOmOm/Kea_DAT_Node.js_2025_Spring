@@ -1,9 +1,26 @@
 <script>
+   import { onMount } from 'svelte';
    import { navigate } from "svelte-routing";
-   
+
+
    function startTrading() {
       navigate("/trading");
    }
+
+   // sockets 
+   import io from 'socket.io-client';
+   import { config } from '../../config/index.js';
+
+   let socket;
+
+   onMount( () => {
+      homeSocket = io(config.SERVER.URL.HOME);
+
+      socket.emit('connect', { message: 'Client connected' });
+
+   })
+
+
 </script>
 
 <h1>Welcome to <br> the Trading Simulation!</h1>

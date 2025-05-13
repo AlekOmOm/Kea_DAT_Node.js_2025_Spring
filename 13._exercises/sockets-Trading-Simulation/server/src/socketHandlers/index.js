@@ -15,16 +15,29 @@ import * as userHandler from 'userHandlers.js'
  * @returns {Object} 
  */
 
-const connection = {
+const connection =  {
    handleConnection: (io, socket) => {
-      console.log('new client connected:', socket.id)
+      console.log(conMsg, socket.id)
    },
+   
+
    handleDisconnection: (io, socket) => {
-      console.log('client disconnected:', socket.id)
+      console.log(discMsg, socket.id)
    }
 }
 
+const trade = {
+   handleTrade: (io, socket) => {
+      console.log(tradeMsg, socket.id)
+   },
 
+   handleTradeDisconnection: (io, socket) => {
+      console.log(tradeDiscMsg, socket.id)
+   }
+}
+
+const user = {
+}
 
 
 
